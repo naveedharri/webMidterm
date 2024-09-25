@@ -1,0 +1,16 @@
+# Dockerfile for httpd_server
+FROM httpd:latest
+
+# Install Git
+RUN apt-get update && apt-get install -y git
+
+# Remove any existing files in the document root
+RUN rm -rf /usr/local/apache2/htdocs/*
+
+# Clone the GitHub repository into the document root
+RUN git clone https://github.com/naveedharri/webMidterm.git /usr/local/apache2/htdocs/
+
+# Ensure the necessary permissions
+RUN chmod -R 755 /usr/local/apache2/htdocs/
+
+EXPOSE 80
